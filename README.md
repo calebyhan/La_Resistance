@@ -21,9 +21,27 @@ The SOE has been lacking in funds recently, so the preservation of money will be
 
 ## Shop
 
+French shop
+* Train ticket (500 Francs)
+* Revolver (750 Francs)
+* 6 bullets (50 Francs)
+* Extra camping supplies (250 Francs)
+
+German shop
+* Train ticket (4 Reichsmark)
+* 6 bullets (0.5 Reichsmark)
+* Radio antenna (3 Reichsmark)
+* Fake passport (7 Reichsmark)
+* Disguise kit (1 Reichsmark)
+
 ## Mechanics
 
-There are several methods of travel, them being: train, hitchhiking, walking, or by stealing a car.
+There are several methods of travel, them being: train (500 km per day), hitchhiking (250 km per day), walking (50 km per day), or by stealing a car (300 km per day).
+Once you reach the German border, you must spend the rest of the day at the border for preparation.
+
+You may only spend Francs in France and Belgium and Reichsmark in Germany.
+
+Killing an SS guard increases your chance of getting caught, but will get you out of the situation. SS guards frequently search trains, so fake passports are necessary in Germany. You can still get searched in France, but those guards are more lenient.
 
 ## Final Score
 
