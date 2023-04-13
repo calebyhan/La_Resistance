@@ -1,3 +1,5 @@
+# La Resistance
+
 La Resistance is an Oregon Trail themed game based in 1944 designed to be difficult and may require strategy to beat the game.
 There are 4 difficulties - Easy, Medium, Hard, and Insane.
 
@@ -6,7 +8,7 @@ You are a SOE agent tasked with delivering a crucial letter to an agent situated
 ## Goal
 
 The goal of this game is to reach the final destination, Berlin, from Dover. There is a mandatory stop at Paris for resources and information.
-The total journey is roughly 1500 km, 50 of which is spent crossing the English Channel.
+The total journey is roughly 1500 km.
 In France and Belgium, the terrain gets a bit treacherous, but you may stumble across some friendly resistance members. In Germany, however, you must trust no one.
 
 You are to deliver secret intel crucial to defeating the Third Reich to a fellow spy in Berlin. If you get caught, there is no going back. Germany does not treat enemy spies kindly.
@@ -21,13 +23,13 @@ The SOE has been lacking in funds recently, so the preservation of money will be
 
 ## Shop
 
-French shop
+### French shop
 * Train ticket (500 Francs)
 * Revolver (750 Francs)
 * 6 bullets (50 Francs)
 * Extra camping supplies (250 Francs)
 
-German shop
+### German shop
 * Train ticket (4 Reichsmark)
 * 6 bullets (0.5 Reichsmark)
 * Radio antenna (3 Reichsmark)
