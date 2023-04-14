@@ -25,16 +25,21 @@ class Game:
             os.system('cls' if os.name == 'nt' else 'clear')
             print("\t[0] Edit inventory")
             print("\t[1] View stats")
+            print("\t[2] View shop")
 
             menu = input("\nChoose an option, or press enter to start: ").strip()
 
             if menu == "":
                 break
-            elif int(menu) in [0, 1]:
+            elif int(menu) in [0, 1, 2]:
                 if int(menu) == 0:
                     self._remove_item()
                 elif int(menu) == 1:
                     self._stats()
+                elif int(menu) == 2 and self.distance < 1000:
+                    self._france_shop()
+                elif int(menu) == 2 and self.distance >= 1000:
+                    self._german_shop()
             else:
                 print("Invalid input.")
 
@@ -42,14 +47,12 @@ class Game:
         self._info()
         self._menu()
 
+        os.system('cls' if os.name == 'nt' else 'clear')
         while True:
-            os.system('cls' if os.name == 'nt' else 'clear')
             self.difficulty = input("Select a difficulty: [0] Easy, [1] Medium, [2] Hard, [3] Insane: ").strip()
             if int(self.difficulty) in [0, 1, 2, 3]:
                 break
-            print("Invalid input.")
-
-        self._main()
+            print("Invalid input.\n")
 
     def _main(self):
         pass
@@ -79,8 +82,15 @@ class Game:
             else:
                 print("Invalid input.")
 
+    def _france_shop(self):
+        pass
+
+    def _german_shop(self):
+        pass
+
     def _stats(self):
         print(self.inventory)
 
     def play(self):
         self._setup()
+        self._main()
