@@ -23,16 +23,18 @@ class Game:
     def _menu(self):
         while True:
             os.system('cls' if os.name == 'nt' else 'clear')
-            print("[0] Edit inventory")
-            print("[1] View stats")
+            print("\t[0] Edit inventory")
+            print("\t[1] View stats")
 
-            menu = input("\nChoose an option, press enter to start: ").strip()
+            menu = input("\nChoose an option, or press enter to start: ").strip()
 
             if menu == "":
                 break
             elif int(menu) in [0, 1]:
                 if int(menu) == 0:
                     self._remove_item()
+                elif int(menu) == 1:
+                    self._stats()
             else:
                 print("Invalid input.")
 
@@ -76,6 +78,9 @@ class Game:
                 break
             else:
                 print("Invalid input.")
+
+    def _stats(self):
+        print(self.inventory)
 
     def play(self):
         self._setup()
