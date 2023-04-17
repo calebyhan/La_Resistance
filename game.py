@@ -1,4 +1,5 @@
 import os
+import re
 
 
 class Game:
@@ -83,10 +84,73 @@ class Game:
                 print("Invalid input.")
 
     def _france_shop(self):
-        pass
+        while True:
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("France shop")
+            print("\t[0] Train Ticket: 500 francs")
+            print("\t[1] Revolver: 750 francs")
+            print("\t[2] 6 bullets: 50 francs")
+            print("\t[3] Extra camping supplies: 250 francs")
+
+            fshop = input("\nEnter the number of the item you want to buy. Press enter to quit: ")
+
+            if fshop == "":
+                break
+            elif int(fshop) in [0, 1, 2, 3]:
+                if int(fshop) == 0 and self.francs >= 500:
+                    self.francs -= 500
+                    self.inventory.append("Train ticket")
+                elif int(fshop) == 1 and self.francs >= 750:
+                    self.francs -= 750
+                    self.inventory.append("Revolver")
+                elif int(fshop) == 2 and self.francs >= 50:
+                    self.francs -= 50
+                    found = False
+                    for item in self.inventory:
+                        if re.search("\d Bullets", item) is None:
+                            item = str(int(item[0]) + 6) + " Bullets"
+                            found = True
+                    if not found:
+                        self.inventory.append("6 Bullets")
+                elif int(fshop) == 3 and self.francs >= 250:
+                    self.francs -= 250
+                    self.inventory.append("Extra camping supplies")
+                    self.inventory.append("")
+            else:
+                print("Invalid input.")
 
     def _german_shop(self):
-        pass
+        while True:
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("German shop")
+            print("\t[0] Train Ticket: 7 reichsmark")
+            print("\t[1] 6 bullets: 0.5 reichsmark")
+            print("\t[2] Radio antenna: 3 reichsmark")
+            print("\t[3] Fake passport: 7 reichsmark")
+            print("\t[4] Disguise kit: 1 reichsmark")
+
+            gshop = input("\nEnter the number of the item you want to buy. Press enter to quit: ")
+
+            if gshop == "":
+                break
+            elif int(gshop) in [0, 1, 2, 3, 4]:
+                if int(gshop) == 0 and self.reichsmark >= 70:
+                    self.reichsmark -= 7
+                    self.inventory.append("Train ticket")
+                elif int(gshop) == 1 and self.reichsmark >= 0.5:
+                    self.reichsmark -= 0.5
+                    self.inventory.append("6 Bullets")
+                elif int(gshop) == 2 and self.reichsmark >= 3:
+                    self.reichsmark -= 3
+                    self.inventory.append("Radio antenna")
+                elif int(gshop) == 3 and self.reichsmark >= 7:
+                    self.reichsmark -= 7
+                    self.inventory.append("Extra camping supplies")
+                elif int(gshop) == 4 and self.reichsmark >= 1:
+                    self.reichsmark -= 1
+                    self.inventory.append("Disguise kit")
+            else:
+                print("Invalid input.")
 
     def _stats(self):
         print(self.inventory)
