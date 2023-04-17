@@ -56,7 +56,8 @@ class Game:
             print("Invalid input.\n")
 
     def _main(self):
-        pass
+        while self.distance <= 1500:
+            pass
 
     def _game_over(self, died):
         self.difficulty = 1
@@ -153,8 +154,13 @@ class Game:
                 print("Invalid input.")
 
     def _stats(self):
-        print(self.inventory)
+        print("STATS\n")
+        print(f"Distance: {str(self.distance)}")
+        print(f"Inventory: {', '.join(self.inventory)}")
+        print(f"Danger: {str(self.danger)}")
+        print(f"Francs: {str(self.francs)}, Reichsmark: {str(self.reichsmark)}")
 
     def play(self):
         self._setup()
         self._main()
+        self._game_over()
