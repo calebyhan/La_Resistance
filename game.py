@@ -26,6 +26,10 @@ class Game:
     def _menu(self):
         while True:
             os.system('cls' if os.name == 'nt' else 'clear')
+            if self.distance == 0:
+                print("Welcome to France. Good luck.\n")
+            if self.distance == 1000:
+                print("Welcome to Germany. Good luck.\n")
             print("\t[0] Edit inventory")
             print("\t[1] View stats")
             print("\t[2] View shop")
@@ -48,7 +52,6 @@ class Game:
 
     def _setup(self):
         self._info()
-        self._menu()
 
         os.system('cls' if os.name == 'nt' else 'clear')
         while True:
@@ -57,11 +60,13 @@ class Game:
                 break
             print("Invalid input.\n")
 
+        self._menu()
+
     def _main(self):
-        crossed = False
-        while self.distance <= 1500:
+        while self.distance < 1500:
+            crossed = False
             if self.distance < 1000:
-                crossed = False
+                crossed = True
             os.system('cls' if os.name == 'nt' else 'clear')
             while True:
                 method = int(input("Select a method of travel: [0] train, [1] hitchhiking, [2] walking, [3] steal a car: "))
@@ -76,11 +81,11 @@ class Game:
                             if roll < success[self.difficulty]:
                                 print("You successfully rode the train.")
                                 self.inventory.remove("Train ticket")
-                                self.distance += 500
+                                self.distance += 400
                             elif reported[self.difficulty] < roll < success[self.difficulty] + reported[self.difficulty]:
                                 print("You successfully rode the train but someone got suspicious of you and will report you.")
                                 self.inventory.remove("Train ticket")
-                                self.distance += 500
+                                self.distance += 400
                                 self.danger += 5
                             else:
                                 print("A patrolling SS guard found an error in your documents and you got arrested.")
@@ -138,17 +143,32 @@ class Game:
                 else:
                     pass
 
-            if not crossed and self.distance >= 1000:
+            if crossed and self.distance >= 1000:
                 self.distance = 1000
                 self._menu()
         return False
 
     def _game_over(self, died):
-        self.difficulty = 1
+        os.system('cls' if os.name == 'nt' else 'clear')
         if died:
-            pass
+            print("Game over. You died.")
+            print(f"\nDistance: {str(self.distance)}")
+
+            input()
         else:
-            pass
+            print("You successfully delivered the message. Good job.")
+            print(f"\nDistance: {str(self.distance)}")
+
+            days = [12, 10, 7, 5]
+            if days[self.difficulty] > self.days:
+                score = self.francs / 10 + self.reichsmark * 10 + days[self.difficulty] - self.days * 50 - self.danger / 5
+            else:
+                score = self.francs / 10 + self.reichsmark * 10 - (self.days - days[self.difficulty]) * 25 - self.danger / 5
+            score -= self.danger
+
+            print(f"Score: {score}")
+
+            input()
 
     def _remove_item(self):
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -192,7 +212,7 @@ class Game:
                     self.francs -= 50
                     found = False
                     for item in self.inventory:
-                        if re.search("\d Bullets", item) is None:
+                        if re.search(r"\d Bullets", item) is None:
                             item = str(int(item[0]) + 6) + " Bullets"
                             found = True
                     if not found:
@@ -201,6 +221,8 @@ class Game:
                     self.francs -= 250
                     self.inventory.append("Extra camping supplies")
                     self.inventory.append("")
+                else:
+                    print("Not enough money.")
             else:
                 print("Invalid input.\n")
 
@@ -219,14 +241,14 @@ class Game:
             if gshop == "":
                 break
             elif int(gshop) in [0, 1, 2, 3, 4]:
-                if int(gshop) == 0 and self.reichsmark >= 70:
+                if int(gshop) == 0 and self.reichsmark >= 7:
                     self.reichsmark -= 7
                     self.inventory.append("Train ticket")
                 elif int(gshop) == 1 and self.reichsmark >= 0.5:
                     self.reichsmark -= 0.5
                     found = False
                     for item in self.inventory:
-                        if re.search("\d Bullets", item) is None:
+                        if re.search(r"\d Bullets", item) is None:
                             item = str(int(item[0]) + 6) + " Bullets"
                             found = True
                     if not found:
@@ -240,6 +262,8 @@ class Game:
                 elif int(gshop) == 4 and self.reichsmark >= 1:
                     self.reichsmark -= 1
                     self.inventory.append("Disguise kit")
+                else:
+                    print("Not enough money.")
             else:
                 print("Invalid input.\n")
 
@@ -270,10 +294,21 @@ class Game:
                                 else:
                                     print("You pull out your gun but realize you have no bullets. It is too late. The guard shoots you.")
                                     return False
-
                 else:
-                    print("You are led to the SS' superior and he deems you as a spy. You are sent to a concentration camp.")
-                    return False
+                    if "Fake passport" not in self.inventory:
+                        if "Disguise kit" not in self.inventory:
+                            print("You are led to the SS' superior and he deems you as a spy. You are sent to a concentration camp.")
+                            return False
+                        else:
+                            if random.randint(0, 4) == 0:
+                                print("Your disguise works. You walk free.")
+                                return True
+                            else:
+                                print("You are led to the SS' superior and he deems you as a spy. You are sent to a concentration camp.")
+                                return False
+                    else:
+                        print("You show the superior your fake passport and you are left free.")
+                        return True
             else:
                 print("Invalid input.\n")
 
@@ -281,7 +316,6 @@ class Game:
         os.system('cls' if os.name == 'nt' else 'clear')
         print("STATS\n")
         print(f"Distance: {str(self.distance)}")
-        print(f"Inventory: {', '.join(self.inventory)}")
         print(f"Danger: {str(self.danger)}")
         print(f"Francs: {str(self.francs)}, Reichsmark: {str(self.reichsmark)}")
 

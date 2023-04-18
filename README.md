@@ -38,7 +38,7 @@ The SOE has been lacking in funds recently, so the preservation of money will be
 
 ## Mechanics
 
-There are several methods of travel, them being: train (500 km per day), hitchhiking (250 km per day), walking (50 km per day), or by stealing a car (300 km per day).
+There are several methods of travel, them being: train (400 km per day), hitchhiking (250 km per day), walking (50 km per day), or by stealing a car (300 km per day).
 Once you reach the German border, you must spend the rest of the day at the border for preparation.
 
 You may only spend Francs in France and Belgium and Reichsmark in Germany.
@@ -53,6 +53,6 @@ Ultimately, if you get caught in any way, you lose the game. However, if you do 
 * You will gain 10 points for every Reichsmark saved.
 * You will gain 50 points for every day before the time span of [12, 10, 7, 5]
 * You will lose 25 points for every day after the time span of [12, 10, 7, 5]
-* You will lose 10 points for every mistake made.
+* You will lose 1 point for every 5 danger.
 
 Your score will be totaled and the higher the score is better.
